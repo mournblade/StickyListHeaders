@@ -32,11 +32,14 @@ class WrapperViewList extends ListView {
 		// Use reflection to be able to change the size/position of the list
 		// selector so it does not come under/over the header
 		try {
-			Field selectorRectField = AbsListView.class.getDeclaredField("mSelectorRect");
-			selectorRectField.setAccessible(true);
-			mSelectorRect = (Rect) selectorRectField.get(this);
+			if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+				Field selectorRectField = AbsListView.class.getDeclaredField("mSelectorRect");
+				selectorRectField.setAccessible(true);
+				mSelectorRect = (Rect) selectorRectField.get(this);
+			}
 
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
 				mSelectorPositionField = AbsListView.class.getDeclaredField("mSelectorPosition");
 				mSelectorPositionField.setAccessible(true);
 			}

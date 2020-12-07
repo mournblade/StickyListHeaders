@@ -17,7 +17,7 @@ android {
     defaultConfig {
         applicationId 'se.emilsjolander.stickylistheaders'
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
     }
 
     sourceSets {
